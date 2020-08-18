@@ -1,0 +1,49 @@
+package com.capstone.bank.Capstone_AdminPortal;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class App 
+{
+    public static void main( String[] args ) throws InterruptedException, AWTException
+    {
+        WebDriver driver= new ChromeDriver();
+       
+        driver.get("http://localhost:4200/");
+        driver.manage().window().maximize();
+       
+        //login
+        driver.findElement(By.name("username")).sendKeys("root");
+        driver.findElement(By.name("password")).sendKeys("root");
+        driver.findElement(By.xpath("/html/body/app-root/div/app-login/div/div/form/button")).click();
+        Thread.sleep(5000);
+        
+        //userAccount
+        driver.findElement(By.xpath("//*[@id=\"bs-example-navbar-collapse-1\"]/ul[1]/li[1]/a[@href='/userAccount']")).click();
+        Thread.sleep(5000);
+        
+        //CheckBookRequest
+        driver.findElement(By.xpath("/html/body/app-root/div/app-navbar/div/nav/div/div[2]/ul[1]/li[2]/a[@href='/chequeBookRequest']")).click();
+        Thread.sleep(5000);
+        
+        //about us
+        driver.findElement(By.xpath("//*[@id=\"bs-example-navbar-collapse-1\"]/ul[2]/li[1]/a[@href='/aboutUs']")).click();
+        Thread.sleep(5000);
+        
+        //logout    
+        driver.findElement(By.xpath("//*[@id=\"bs-example-navbar-collapse-1\"]/ul[2]/li[2]/a")).click();
+        driver.findElement(By.xpath("/html/body/app-root/div/app-navbar/div/nav/div/div[1]/a[@href='/login']")).click();
+        //Thread.sleep(5000);
+        
+        
+        driver.close();
+        
+    }
+}
